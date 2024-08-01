@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+      data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin - Course List</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <table id="table1" class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>COURSE NAME</th>
+                                <th>PRICE</th>
+                                <th>STATUS</th>
+                                <th>USER</th>
+                                <th>COURSE TYPE</th>
+                                <th>CENSOR</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="course: ${courses}">
+                                <td class="align-middle" th:text="${course[0]}"></td>
+                                <td class="align-middle" th:text="${course[1]}"></td>
+                                <td class="align-middle"><span th:text="${course[2]}"></span>$</td>
+                                <td class="align-middle">
+                                    <div th:if="${course[3]==1}" class="align-middle text-success fw-bolder">APPROVED</div>
+                                    <div th:if="${course[3]==2}" class="align-middle text-primary fw-bolder">NOT APPROVED</div>
+                                    <div th:if="${course[3]==3}" class="align-middle text-warning fw-bolder">ASK TO EDIT</div>
+                                    <div th:if="${course[3]==4}" class="align-middle text-danger fw-bolder">REJECTED</div>
+                                </td>
+                                <td class="align-middle" th:text="${course[4]}"></td>
+                                <td class="align-middle" th:text="${course[5]}"></td>
+                                <td class="align-middle" th:text="${course[6]}"></td>
+                                <td>
+                                    <a th:href="@{detail/{id}(id=${course[0]})}" class="btn btn-primary">Detail</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot th:if="${courses.size()>5}">
+                            <tr>
+                                <th>ID</th>
+                                <th>COURSE NAME</th>
+                                <th>PRICE</th>
+                                <th>STATUS</th>
+                                <th>USER</th>
+                                <th>COURSE TYPE</th>
+                                <th>CENSOR</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+</body>
+
+</html>

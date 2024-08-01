@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+      data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin - Dashboard</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card crm-widget">
+                            <div class="card-body p-0">
+                                <div class="row row-cols-xxl-5 row-cols-md-3 row-cols-1 g-0">
+                                    <div class="col">
+                                        <div class="py-4 px-3">
+                                            <h5 class="text-muted text-uppercase fs-13">
+                                                User
+                                            </h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <i class="bx bx-user-circle display-6 text-muted"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h2 class="mb-0">
+                                                        <span class="counter-value" th:data-target="${countUser}"></span>
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                                    <div class="col">
+                                        <div class="mt-3 mt-md-0 py-4 px-3">
+                                            <h5 class="text-muted text-uppercase fs-13">
+                                                Total Revenue
+                                            </h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <i class="ri-exchange-dollar-line display-6 text-muted"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h2 class="mb-0">
+                                                        $<span class="counter-value" th:data-target="${totalRevenue}"></span>
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                                    <div class="col">
+                                        <div class="mt-3 mt-md-0 py-4 px-3">
+                                            <h5 class="text-muted text-uppercase fs-13">
+                                                Teacher
+                                            </h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <i class="ri-space-ship-line display-6 text-muted"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h2 class="mb-0">
+                                                        <span class="counter-value" th:data-target="${countTeacher}"></span>
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                                    <div class="col">
+                                        <div class="mt-3 mt-lg-0 py-4 px-3">
+                                            <h5 class="text-muted text-uppercase fs-13">
+                                                Courses
+                                            </h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <i class="ri-trophy-line display-6 text-muted"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h2 class="mb-0">
+                                                        <span class="counter-value" th:data-target="${countCourse}"></span>
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                                    <div class="col">
+                                        <div class="mt-3 mt-lg-0 py-4 px-3">
+                                            <h5 class="text-muted text-uppercase fs-13">
+                                                Teacher Policy (%)
+                                            </h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <i class="bx bx-dollar-circle display-6 text-muted"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <form method="post" th:action="@{/admin/policy/edit}" th:object="${policy}">
+                                                        <label class="d-flex gap-2">
+                                                            <input type="hidden" th:field="*{policyId}">
+                                                            <input type="hidden" th:field="*{category}">
+                                                            <input type="hidden" th:field="*{status}">
+                                                            <input type="hidden" th:field="*{updateAt}">
+                                                            <input type="hidden" th:field="*{description}">
+                                                            <input type="number" class="form-control" th:field="*{ratio}">
+                                                            <button class="btn btn-primary" type="submit">SM</button>
+                                                        </label>
+                                                        <div style="color: red" th:if="${validatePolicy != null and !validatePolicy.isEmpty()}" th:text="${validatePolicy}" class="error"></div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                        <!-- end card -->
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+
+                <div class="row">
+
+                    <div class="col-xxl-12">
+                        <div class="card card-height-100">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Balance Overview</h4>
+                                <div class="flex-shrink-0">
+                                    <div class="dropdown card-header-dropdown">
+                                        <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="fw-semibold text-uppercase fs-12">Sort by: </span><span class="text-muted" id="current-period">Current Year<i class="mdi mdi-chevron-down ms-1"></i></span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#" onclick="updateChart('day', 'Today')">Today</a>
+                                            <a class="dropdown-item" href="#" onclick="updateChart('week', 'Last Week')">Last Week</a>
+                                            <a class="dropdown-item" href="#" onclick="updateChart('month', 'Last Month')">Last Month</a>
+                                            <a class="dropdown-item" href="#" onclick="updateChart('year', 'Current Year')">Current Year</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card header -->
+                            <div class="card-body px-0">
+                                <div id="revenue-expenses-charts" class="apex-charts" dir="ltr"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+
+                <div class="row">
+
+                    <div class="col-xxl-12">
+                        <div class="card card-height-100">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Revenue of Teacher in this Month</h4>
+                            </div>
+                            <!-- end card header -->
+
+                            <div class="card-body">
+                                <table id="table1" class="table table-striped" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>USERNAME</th>
+                                        <th>FULL NAME</th>
+                                        <th>SALARY</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="teacherSalaryDTO: ${teacherSalaryDTOs}">
+                                        <td class="align-middle" th:text="${teacherSalaryDTO.username}"></td>
+                                        <td class="align-middle" th:text="${teacherSalaryDTO.fullName}"></td>
+                                        <td class="align-middle"><span th:text="${teacherSalaryDTO.salary}"></span> $</td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot th:if="${teacherSalaryDTOs.size()>5}">
+                                    <tr>
+                                        <th>USERNAME</th>
+                                        <th>FULL NAME</th>
+                                        <th>SALARY</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                        <!-- end card -->
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script th:inline="javascript">
+    // Lấy dữ liệu từ Thymeleaf
+    let revenueDays = /*[[${revenueDays}]]*/ '[]';
+    let revenueWeeks = /*[[${revenueWeeks}]]*/ '[]';
+    let revenueMonths = /*[[${revenueMonths}]]*/ '[]';
+    let revenueYears = /*[[${revenueYears}]]*/ '[]';
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const nextMonth = new Date(year, month + 1, 1);
+    const lastDayOfCurrentMonth = new Date(nextMonth - 1);
+    const daysInCurrentMonth = lastDayOfCurrentMonth.getDate();
+    console.log(daysInCurrentMonth);
+
+    var data = {
+        day: {
+            revenue: new Array(24).fill(0),
+            categories: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+        },
+        week: {
+            revenue: new Array(7).fill(0),
+            categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        month: {
+            revenue: new Array(daysInCurrentMonth).fill(0),
+            categories: Array.from({length: daysInCurrentMonth}, (_, i) => i + 1),
+        },
+        year: {
+            revenue: new Array(12).fill(0),
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        }
+    };
+
+    revenueDays.forEach(item => {
+        data.day.revenue[item.count] = item.price;
+    });
+
+    revenueWeeks.forEach(item => {
+        data.week.revenue[item.count-2] = item.price;
+    });
+
+
+    revenueMonths.forEach(item => {
+        data.month.revenue[item.count-1] = item.price;
+    });
+
+    revenueYears.forEach(item => {
+        data.year.revenue[item.count-1] = item.price;
+    });
+
+    let options = {
+        series: [{
+            name: 'Revenue',
+            data: data.year.revenue
+        }],
+        chart: {
+            height: 350,
+            type: 'line',
+            toolbar: {
+                show: false
+            }
+        },
+        stroke: {
+            width: [3, 3],
+            curve: 'smooth'
+        },
+        xaxis: {
+            categories: data.year.categories
+        },
+        colors: ['#34c38f'],
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            position: 'top'
+        }
+    };
+
+    let chart = new ApexCharts(document.querySelector("#revenue-expenses-charts"), options);
+    chart.render();
+
+    function updateChart(timeframe, period) {
+        document.getElementById('current-period').innerHTML = `${period} <i class="mdi mdi-chevron-down ms-1"></i>`;
+
+        chart.updateOptions({
+            xaxis: {
+                categories: data[timeframe].categories
+            },
+            series: [{
+                name: 'Revenue',
+                data: data[timeframe].revenue
+            }]
+        });
+    }
+</script>
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+</body>
+
+</html>

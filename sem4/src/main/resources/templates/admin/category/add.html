@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin - Add Category</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <form th:action="@{/admin/category/add}" method="post" th:object="${category}">
+                            <input type="hidden" th:field="*{categoryId}">
+                            <div class="mb-3">
+                                <label for="categoryName" class="form-label">Category Name</label>
+                                <input th:field="*{categoryName}" type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Category Name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="stt" class="form-label">Status1</label>
+                                <input th:field="*{status}" type="text" class="form-control" id="stt" name="createAt" placeholder="Status">
+                            </div>
+<!--                            <div class="mb-3">-->
+<!--                                <label for="sta" class="form-label">Status</label>-->
+<!--                                <select th:field="*{status}" class="form-select" id="sta">-->
+<!--                                    <option value="1">OPEN</option>-->
+<!--                                    <option value="2">LOCK</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+                            <div class="mb-3">
+                                <label for="createAt" class="form-label">Create At</label>
+                                <input th:field="*{createAt}" type="text" class="form-control" id="createAt" name="createAt" placeholder="Create At">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="user" class="form-label">User</label>
+                                <input th:field="*{description}" type="text" class="form-control" id="user" name="user" placeholder="User">
+                            </div>
+                            <button type="submit" class="btn btn-danger">Add</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+
+</body>
+
+</html>

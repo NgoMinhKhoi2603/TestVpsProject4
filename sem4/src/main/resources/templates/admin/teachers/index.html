@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+      data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin - Teacher List</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <table id="table1" class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>USERNAME</th>
+                                <th>FULL NAME</th>
+                                <th>GIT</th>
+                                <th>WEBSITE</th>
+                                <th>DESCRIPTION</th>
+                                <th>STATUS</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="teacherRegister: ${teacherRegisters}">
+                                <td class="align-middle" th:text="${teacherRegister.user.username}"></td>
+                                <td class="align-middle" th:text="${teacherRegister.user.fullname}"></td>
+                                <td class="align-middle"><a th:href="${teacherRegister.git}" target="_blank">Click Here</a></td>
+                                <td class="align-middle"><a th:href="${teacherRegister.website}" target="_blank">Click Here</a></td>
+                                <td class="align-middle" th:text="${teacherRegister.description}" style="white-space: nowrap; max-width: 150px; overflow: hidden; text-overflow: ellipsis"></td>
+                                <td th:if="${teacherRegister.status==1}" class="align-middle text-success fw-semibold">Accept</td>
+                                <td th:if="${teacherRegister.status==2}" class="align-middle text-danger fw-semibold">Not Accept</td>
+                                <td>
+                                    <a th:href="@{detail/{id}(id=${teacherRegister.user.userId})}" class="btn btn-primary">Detail</a>
+                                    <a th:if="${teacherRegister.status==1}" th:href="@{status/{id}(id=${teacherRegister.id})}" class="btn btn-danger">Lock</a>
+                                    <a th:if="${teacherRegister.status==2}" th:href="@{status/{id}(id=${teacherRegister.id})}" class="btn btn-success">Accept</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot th:if="${teacherRegisters.size()>5}">
+                            <tr>
+                                <th>USERNAME</th>
+                                <th>FULL NAME</th>
+                                <th>GIT</th>
+                                <th>WEBSITE</th>
+                                <th>DESCRIPTION</th>
+                                <th>STATUS</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+</body>
+
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from codebasket.xyz/template/talim/light/course-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 07:56:54 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Courses - Course Detail</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
+
+</head>
+
+<style>
+    body {
+        padding-right: 0 !important;
+    }
+</style>
+
+<body class="tl-inner-courses-body">
+<!--HEADER HOME-->
+<div th:insert="~{home/fragments/header}"></div>
+
+
+<!-- BREADCRUMB STARTS HERE -->
+<div class="tl-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-md-6">
+                <div class="banner-txt">
+                    <h1 class="tl-breadcrumb-title">Course Details</h1>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <ul class="tl-breadcrumb-nav d-flex">
+                    <li><a th:href="@{/course/}">Course</a></li>
+                    <li class="current-page">
+                        <span class="dvdr"><i class="icofont-simple-right"></i></span>
+                        <span>Detail</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMB ENDS HERE -->
+
+<!-- COURSE DETAILS START -->
+<div class="tl-event-details-container pt-120 pb-120">
+    <div class="container">
+        <div class="row g-0 tl-event-details-row">
+            <div class="col-lg-8">
+                <div class="tl-event-details-left">
+                    <div class="tl-event-details-video">
+                        <video controls th:src="${course.courseVideo}" style="width: 100%"></video>
+
+                        <h2 class="tl-event-details-title" th:text="${course.courseName}"></h2>
+                    </div>
+
+                    <div class="tl-course-details-infos">
+                        <div class="tl-course-details-info">
+                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-user-graduate"></i>Teacher</h6>
+                            <h5 class="tl-course-details-info-value" th:text="${course.user.fullname}"></h5>
+                        </div>
+                        <div class="tl-course-details-info">
+                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-layer-group"></i>Course Type</h6>
+                            <h5 class="tl-course-details-info-value" th:text="${course.courseType.typeName}"></h5>
+                        </div>
+                        <div class="tl-course-details-info">
+                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-tv"></i>Category</h6>
+                            <h5 class="tl-course-details-info-value" th:text="${course.category.categoryName}"></h5>
+                        </div>
+                        <div class="tl-course-details-info">
+                            <h6 class="tl-course-details-info-name"><i class="fa-solid fa-sharp fa-star"></i>Ratings: <span th:text="${!averageStar.isNaN()?averageStar:0}"></span></h6>
+                            <div>
+                                <div class="stars">
+                                    <svg width="18" height="18" viewBox="0 0 940.688 940.688">
+                                        <path
+                                                d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <svg width="18" height="18" viewBox="0 0 940.688 940.688">
+                                        <path
+                                                d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <svg width="18" height="18" viewBox="0 0 940.688 940.688">
+                                        <path
+                                                d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <svg width="18" height="18" viewBox="0 0 940.688 940.688">
+                                        <path
+                                                d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <svg width="18" height="18" viewBox="0 0 940.688 940.688">
+                                        <path
+                                                d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <div class="overlay" th:style="'width: '+ ${100 - (!averageStar.isNaN()?averageStar*20:0)} + '%'"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-tabs tl-course-details-navs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-tab-pane" type="button" role="tab" aria-controls="overview-tab-pane" aria-selected="true">overview</button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum-tab-pane" type="button" role="tab" aria-controls="curriculum-tab-pane" aria-selected="false">curriculum</button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="instructor-tab" data-bs-toggle="tab" data-bs-target="#instructor-tab-pane" type="button" role="tab" aria-controls="instructor-tab-pane" aria-selected="false">teacher</button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false">reviews</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="tl-course-tab-content">
+                        <div class="tab-pane fade show active" id="overview-tab-pane" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
+                            <div class="tl-event-details-descr tl-event-details-area">
+                                <h3 class="tl-event-details-area-title">About The Course</h3>
+
+                                <p class="tl-event-details-descr-txt" th:text="${course.description}"></p>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="curriculum-tab-pane" role="tabpanel" aria-labelledby="curriculum-tab" tabindex="0">
+                            <div class="accordion" id="accordionExample">
+                                <div class="tl-event-details-area tl-course-details-curriculum" th:each="chapter, chapter_count: ${chapters}">
+                                    <h2 class="accordion-header">
+                                        <button th:text="${chapter.chapterName}" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" th:data-bs-target="'#collapse'+${chapter.chapterId}" aria-expanded="true" th:aria-controls="'collapse' + ${chapter.chapterId}"></button>
+                                    </h2>
+                                    <div th:id="'collapse'+${chapter.chapterId}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+<!--                                            <a th:href="${chapter_count.index<course.freeNumbers or !checkBuy?chapter.chapterVideo:'#'}" class="tl-course-details-content">-->
+                                            <a th:if="${chapter_count.index<course.freeNumbers or (#strings.isEmpty(checkBuy) ? false : checkBuy)}" href="#" data-bs-toggle="modal" data-bs-target="#ModalVideo" class="tl-course-details-content get-video-class" th:onclick="'getVideo('+${chapter.chapterId}+','+${chapter_count.index}+')'">
+                                                    <span class="tl-course-details-content-left">
+                                                        <i class="fa-regular fa-video"></i> Video of Chapter
+                                                    </span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-availability">
+                                                            <i class="fa-regular fa-lock-open"></i>
+                                                        </span>
+                                                    </span>
+                                            </a>
+                                            <a th:unless="${chapter_count.index<course.freeNumbers or (#strings.isEmpty(checkBuy) ? false : checkBuy)}" href="#"  class="tl-course-details-content">
+                                                    <span class="tl-course-details-content-left">
+                                                        <i class="fa-regular fa-video"></i> Video of Chapter
+                                                    </span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-availability">
+                                                            <i class="fa-regular fa-lock"></i>
+                                                        </span>
+                                                    </span>
+                                            </a>
+
+                                            <a th:href="${chapter_count.index<course.freeNumbers or (#strings.isEmpty(checkBuy) ? false : checkBuy)?chapter.chapterFile:''}" th:target="${chapter_count.index<course.freeNumbers or (#strings.isEmpty(checkBuy) ? false : checkBuy)?'_blank':''}" class="tl-course-details-content">
+                                                <span class="tl-course-details-content-left"><i class="fa-regular fa-file-contract"></i> Document of Chapter</span>
+
+                                                <span class="tl-course-details-content-right">
+                                                    <span class="tl-course-details-availability">
+                                                        <i th:if="${chapter_count.index<course.freeNumbers or (#strings.isEmpty(checkBuy) ? false : checkBuy)}" class="fa-regular fa-lock-open"></i>
+                                                        <i th:if="${chapter_count.index>=course.freeNumbers and !(#strings.isEmpty(checkBuy) ? false : checkBuy)}" class="fa-regular fa-lock"></i>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="instructor-tab-pane" role="tabpanel" aria-labelledby="instructor-tab" tabindex="0">
+                            <div class="tl-course-details-instructor tl-event-details-area" th:if="${teacherRegister!=null}">
+                                <div class="tl-course-details-instructor-heading">
+                                    <img class="tl-course-details-instructor-img" th:src="${teacherRegister.user.image}" alt="instructor Image">
+
+                                    <div class="tl-course-details-instructor-info">
+                                        <h5 class="tl-course-details-instructor-name"><a th:href="'/teacher/detail/' + ${teacherRegister.id}" th:text="${teacherRegister.user.fullname}"></a></h5>
+                                        <ul class="tl-course-details-instructor-socials">
+                                            <li><a th:href="${teacherRegister.git}"><i class="fa-brands fa-github"></i></a></li>
+                                            <li><a th:href="${teacherRegister.website}"><i class="fa-solid fa-globe"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="tl-course-details-instructor-txt">
+                                    <p class="tl-course-details-instructor-intro" th:text="${teacherRegister.description}"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+                            <div sec:authorize="isAuthenticated()">
+                                <div class="tl-event-details-area tl-course-details-review" th:if="${checkBuy}">
+                                    <div class="card">
+                                        <div class="card-body p-4">
+                                            <div class="d-flex flex-start w-100">
+                                                <img class="rounded-circle shadow-1-strong me-3"
+                                                     th:src="${user.image}" alt="avatar" width="65"
+                                                     height="65" />
+                                                <div class="w-100">
+                                                    <h5 th:text="${user.fullname}"></h5>
+                                                    <div th:if="${reviewByUser!=null}">
+                                                        <div class="tl-course-details-stars" style="text-align: center; padding: 30px;">
+                                                        <span th:each="i : ${#numbers.sequence(1, 5)}">
+                                                            <i th:if="${i<=reviewByUser.starNumber}" class="fa-solid fa-star" style="font-size: 30px"></i>
+                                                            <i th:if="${i>reviewByUser.starNumber}" class="fa-regular fa-star" style="font-size: 30px"></i>
+                                                        </span>
+                                                        </div>
+
+                                                        <p class="tl-2-testimony-txt" th:text="${reviewByUser.comment}"></p>
+                                                    </div>
+                                                    <form th:if="${reviewByUser==null}" th:action="'/review/uploadReview/' + ${course.courseId}" method="get">
+                                                        <div data-mdb-rating-init class="rating mb-3" data-mdb-toggle="rating">
+                                                            <div class="star-rating">
+                                                                <input type="radio" id="5-stars" name="rating" value="5" />
+                                                                <label for="5-stars" class="star">&#9733;</label>
+                                                                <input type="radio" id="4-stars" name="rating" value="4" />
+                                                                <label for="4-stars" class="star">&#9733;</label>
+                                                                <input type="radio" id="3-stars" name="rating" value="3" />
+                                                                <label for="3-stars" class="star">&#9733;</label>
+                                                                <input type="radio" id="2-stars" name="rating" value="2" />
+                                                                <label for="2-stars" class="star">&#9733;</label>
+                                                                <input type="radio" id="1-star" name="rating" value="1" />
+                                                                <label for="1-star" class="star">&#9733;</label>
+                                                            </div>
+                                                        </div>
+                                                        <div data-mdb-input-init class="form-outline">
+                                                            <textarea class="form-control" name="comment" id="textAreaExample" rows="4" placeholder="Comment Here"></textarea>
+                                                            <label class="form-label" for="textAreaExample">What is your Review?</label>
+                                                        </div>
+                                                        <div class="d-flex justify-content-end mt-3">
+                                                            <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn" style="background-color: rgb(244, 184, 38)">
+                                                                Send <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tl-event-details-area tl-course-details-review" th:each="review: ${reviews}">
+                                <div class="tl-course-details-stars" >
+                                    <span th:each="i : ${#numbers.sequence(1, 5)}">
+                                        <i th:if="${i<=review.starNumber}" class="fa-solid fa-star"></i>
+                                        <i th:if="${i>review.starNumber}" class="fa-regular fa-star"></i>
+                                    </span>
+                                </div>
+
+                                <p class="tl-2-testimony-txt" th:text="${review.comment}"></p>
+
+                                <div class="tl-2-testimony-reviewer">
+                                    <img th:src="${review.user.image}" alt="Person" class="tl-2-testimony-reviewer-img" width="40px">
+                                    <div class="tl-2-testimony-reviewer-info">
+                                        <h6 class="tl-2-testimony-reviewer-name" th:text="${review.user.fullname}"></h6>
+                                        <p class="tl-2-testimony-reviewer-label" th:text="${review.updateAt}">B.Tech - Civil, 2015 - 2020</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDEBAR -->
+            <div class="col-lg-4">
+                <div sec:authorize="isAuthenticated()">
+                    <div class="tl-event-details-right" th:if="${checkBuy}">
+                        <a th:href="${course.courseFile}" target="_blank" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn" style="background-color: cornflowerblue">Get Study Materials</a>
+                        <span class="tl-event-details-book-btn" th:each="examUserDTO: ${examUserDTOs}">
+                        <a th:if="${examUserDTO.getCountTrueAnswers() == -1}" th:href="'/course/exam/'+${examUserDTO.exam.getExamId()}" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn">
+                            <span th:text="${examUserDTO.exam.getExamName()}"></span>
+                        </a>
+                        <span th:unless="${examUserDTO.getCountTrueAnswers() == -1}" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn" style="background-color: white">
+                            <span th:text="${examUserDTO.exam.getExamName()} + ': '"></span> <span th:text="${examUserDTO.getCountTrueAnswers()}"></span> / <span th:text="${examUserDTO.getCountAnswers()}"></span> Points
+                        </span>
+                    </span>
+                    </div>
+                    <div class="tl-event-details-right" th:unless="${checkBuy}">
+                        <div class="tl-course-details-sidebar-heading">
+                            <h3 th:if="${course.salePrice==0}" class="tl-course-details-price">
+                                <span th:text="${course.price}"></span> $
+                            </h3>
+                            <h3 th:unless="${course.salePrice==0}" class="tl-course-details-price">
+                                <del th:text="${course.price}" style="color: #f4b826"></del> <span th:text="${course.salePrice}"></span> $
+                            </h3>
+                        </div>
+
+                        <ul class="tl-event-details-infos">
+                            <li class="tl-event-details-info">
+                                <span class="key"><i class="fa-regular fa-video"></i> Chapter:</span>
+                                <span class="value">
+                                <span th:text="${chapters.size()}"></span>
+                                    +
+                            </span>
+                            </li>
+                            <!--                        <li class="tl-event-details-info">-->
+                            <!--                            <span class="key"><i class="fa-regular fa-tv"></i> Live Class</span>-->
+                            <!--                            <span class="value">10+</span>-->
+                            <!--                        </li>-->
+                            <li class="tl-event-details-info">
+                                <span class="key"><i class="fa-regular fa-file-contract"></i> Exams:</span>
+                                <span class="value">
+                                <span th:text="${examUserDTOs.size()}"></span>
+                                +
+                            </span>
+                            </li>
+                            <li class="tl-event-details-info">
+                                <span class="key"><i class="fa-regular fa-user"></i> Students:</span>
+                                <span class="value">
+                                <span th:text="${countUserBuyCourse}"></span>
+                                +
+                            </span>
+                            </li>
+                        </ul>
+                        <input id="hidden-course-id" type="hidden" th:value="${course.courseId}">
+                        <button id="button-add-to-cart" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn">Add To Cart</button>
+                    </div>
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <div class="tl-event-details-right">
+                        <div class="tl-course-details-sidebar-heading">
+                            <h3 class="tl-course-details-price">
+                                <span th:text="${course.price}"></span> $
+                            </h3>
+                        </div>
+
+                        <ul class="tl-event-details-infos">
+                            <li class="tl-event-details-info">
+                                <span class="key"><i class="fa-regular fa-video"></i> Chapter:</span>
+                                <span class="value">
+                                <span th:text="${chapters.size()}"></span>
+                                    +
+                            </span>
+                            </li>
+                            <li class="tl-event-details-info">
+                                <span class="key"><i class="fa-regular fa-file-contract"></i> Exams:</span>
+                                <span class="value">
+                                <span th:text="${countExam}"></span>
+                                +
+                                </span>
+                            </li>
+                            <li class="tl-event-details-info">
+                                <span class="key"><i class="fa-regular fa-user"></i> Students:</span>
+                                <span class="value">
+                                <span th:text="${countUserBuyCourse}"></span>
+                                +
+                            </span>
+                            </li>
+                        </ul>
+                        <input type="hidden" th:value="${course.courseId}">
+                        <a href="/login" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn">Add To Cart</a>
+                    </div>
+                </div>
+
+
+                <div class="tl-event-details-right tl-upcoming-events">
+                    <h3 class="tl-upcoming-events-title">Courses Have Same Teacher </h3>
+                    <div class="tl-upcoming-event tl-pop-course" th:each="courseHaveSameName: ${coursesHaveSameName}">
+                        <img class="tl-upcoming-event-img" th:src="${courseHaveSameName.image}" alt="event image">
+                        <div class="tl-upcoming-event-txt">
+                            <h4 class="tl-upcoming-event-title"><a th:href="'/course/detail/' + ${courseHaveSameName.courseId}" th:text="${courseHaveSameName.courseName}"></a></h4>
+                            <ul class="tl-2-blog-infos">
+                                <li>By <a th:href="@{#}" th:text="${courseHaveSameName.user.fullname}"></a></li>
+                                <li><span th:text="${courseHaveSameName.price}"></span> $</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- COURSE DETAILS END -->
+
+<!-- Modal -->
+<div class="modal fade" id="ModalVideo" tabindex="-1" aria-labelledby="ModalVideoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalVideoLabel">Video's Chapter</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="display-video">
+                <video controls src="/home/images/NoVideo.mp4"></video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--FOOTER HOME-->
+<div th:insert="~{/home/fragments/footer}"></div>
+<script th:src="@{/home/js/courseDetail.js}"></script>
+</body>
+
+
+<!-- Mirrored from codebasket.xyz/template/talim/light/course-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 07:56:55 GMT -->
+</html>

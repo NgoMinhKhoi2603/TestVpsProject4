@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--    <title>Talim - School University & Online Education Template</title>-->
+    <link rel="shortcut icon" href="home/images/logo/favicon.ico" type="image/x-icon">
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" th:href="@{/home/vendor/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/owl-carousel/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/home/css/icofont.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/font-awesome/all.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/font-awesome/sharp-regular.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/font-awesome/sharp-solid.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/mean-menu/meanmenu.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/eocjs-newsticker/eocjs-newsticker.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/flag-icons/flag-icons.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/swiper-js/swiper-bundle.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/slick-slider/slick.css}">
+    <link rel="stylesheet" th:href="@{/home/css/style.css}">
+    <link rel="stylesheet" th:href="@{/home/css/search.css}">
+    <link rel="stylesheet" th:href="@{/home/css/course-detail.css}">
+    <link rel="stylesheet" th:href="@{/home/css/cart.css}">
+    <link rel="stylesheet" th:href="@{/home/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/home/css/header.css}">
+
+    <!-- dark version css -->
+    <link rel="stylesheet" th:href="@{/home/css/dark-v.css}">
+
+<!--    acount-->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/home/css/detail2.css}">
+
+
+
+</head>
+<body>
+<div th:fragment="header">
+    <!-- preloader start 👇-->
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="loading-content">
+                    <img class="loading-logo-text" th:src="@{/home/images/logos/tl-13-logo.png}" alt="Online Courses">
+                    <div class="loading-stroke">
+                        <img class="loading-logo-icon" th:src="@{/home/images/logo/logo-icon.png}" alt="Pen">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- preloader end 👆-->
+
+    <!--header-responsive-->
+    <ul class="menu-toggle-detail" id="menu-toggle-detail">
+        <li class="close-button">
+            <button class="close-toggle" id="close-toggle">
+                <i class="fas fa-times"></i>
+            </button>
+        </li>
+        <li><a th:href="@{/}"><i class="fas fa-home"></i> Home</a></li>
+        <li><a th:href="@{/course/list/1}"><i class="fas fa-book"></i> Courses</a></li>
+        <li><a th:href="@{/teacher/list}"><i class="fas fa-chalkboard-teacher"></i> Teachers</a></li>
+        <li><a  th:href="@{/contactus}"><i class="fas fa-phone-square"></i> Contact</a></li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')"><a class="text-danger" th:href="@{/admin/dashboard}" role="button">
+            <i class="fas fa-user-shield"></i> Admin
+        </a></li>
+
+
+    </ul>
+
+    <!-- HEADER SECTION STARTS HERE 👇-->
+    <div class="tl-header tl-13-header" data-bg-color="#F2EFE8" style="background-color: rgb(242, 239, 232);">
+        <div class="container">
+            <div class="row g-0 align-items-center">
+                <div class="col-xl-2 col-lg-2">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12 col-6">
+                            <div class="logo">
+                                <a th:href="@{/}">
+                                    <img th:src="@{/home/images/logos/tl-13-logo.png}" alt="KIDBA">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="d-lg-none d-flex justify-content-end col-6 dropdown">
+                            <button class="tl-hamburger navbar-toggler" id="menu-toggle">
+                                <i class="icofont-navigation-menu"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-7">
+                    <div class="tl-nav-menu">
+                        <ul class="justify-content-center">
+                            <li class="tl-nav-item tl-dropdown">
+                                <a th:href="@{/}" role="button">
+                                    Home
+                                </a>
+                            </li>
+
+                            <li class="tl-nav-item tl-dropdown">
+                                <a th:href="@{/course/list/1}" role="button">
+                                    Courses <i class="fa-regular fa-angle-down"></i>
+                                </a>
+                                <ul class="tl-submenu" id="courseTypeResult">
+
+                                </ul>
+                            </li>
+
+                            <li class="tl-nav-item tl-dropdown">
+                                <a href="/teacher/list" role="button">
+                                    Teachers
+                                </a>
+                            </li>
+
+<!--                            <li class="tl-nav-item tl-dropdown">-->
+<!--                                <a href="#" role="button">-->
+<!--                                    Blog <i class="fa-regular fa-angle-down"></i>-->
+<!--                                </a>-->
+<!--                                <ul class="tl-submenu">-->
+<!--                                    <li class="tl-dropdown-2">-->
+<!--                                        <a href="#">Blog <i class="fa-regular fa-angle-right"></i></a>-->
+
+<!--                                        <ul class="tl-submenu tl-submenu-2">-->
+<!--                                            <li><a href="blog.html">Blog One</a></li>-->
+<!--                                            <li><a href="blog-2.html">Blog Two</a></li>-->
+<!--                                            <li><a href="blog-3.html">Blog Three</a></li>-->
+<!--                                            <li><a href="blog-4.html">Blog Four</a></li>-->
+<!--                                            <li><a href="blog-5.html">Blog Five</a></li>-->
+<!--                                            <li><a href="blog-6.html">Blog Six</a></li>-->
+<!--                                            <li><a href="blog-7.html">Blog Seven</a></li>-->
+<!--                                        </ul>-->
+<!--                                    </li>-->
+<!--                                    <li><a href="blog-details.html">Blog Details</a></li>-->
+<!--                                </ul>-->
+<!--                            </li>-->
+
+                            <li class="tl-nav-item ">
+                                <a th:href="@{/contactus}">Contact <i class="fa-regular "></i></a>
+
+                            </li>
+
+                            <div sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                                <li class="tl-nav-item tl-dropdown">
+                                    <a class="text-danger" th:href="@{/admin/dashboard}" role="button">
+                                        Admin
+                                    </a>
+                                </li>
+
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-3 d-lg-block d-none">
+                    <div sec:authorize="isAnonymous()" class="tl-header-actions tl-13-header-actions d-flex justify-content-end align-items-center">
+                        <a th:href="@{/register}"> Register</a>
+                        <a th:href="@{/login}" class="tl-def-btn"><i class="fa-regular fa-user"></i> Login</a>
+                    </div>
+                    <div sec:authorize="isAuthenticated()" class="tl-header-actions tl-13-header-actions d-flex justify-content-end align-items-center">
+                        <div class="tl-nav-menu " >
+                            <ul class="justify-content-center ">
+                                <li class="tl-nav-item tl-dropdown">
+                                    <div class="cart-hover">
+                                        <a th:href="@{/cart/list}"><i class="fa-regular fa-bag-shopping"></i></a>
+                                        <span class="number-items-cart" id="countCart">0</span>
+                                    </div>
+                                    <ul class="tl-submenu" id="cartResult">
+                                        <li class="cart-2-li"> Chưa có sản phẩm nào trong giỏ hàng! </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tl-nav-menu "  >
+                            <ul class="justify-content-center ">
+                                <li class="tl-nav-item tl-dropdown">
+                                    <div role="button" class="tl-def-btn">
+                                        <i class="fa-regular fa-user"></i>
+                                        <span th:text="${#authentication.name}"></span>
+                                        <span> </span> <span> </span>
+                                        <i class="fa-regular fa-angle-down"></i>
+                                    </div>
+                                    <ul class="tl-submenu" style="min-width: 200px">
+                                        <li><a th:href="@{/home/account/detail}">My Account</a></li>
+                                        <li><a th:href="@{/registerTeacher}">Teacher Register</a></li>
+                                        <li sec:authorize="hasAnyRole('ADMIN', 'TEACHER')"><a class="text-danger" href="/roleTeacher/detail">Teacher</a></li>
+                                        <li>
+                                            <form th:action="@{/logout}" method="post">
+                                                <button type="submit">Log Out</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- HEADER SECTION ENDS HERE 👆-->
+</div>
+</body>
+</html>
