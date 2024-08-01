@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fontawesome-all.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/iofrm-style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/iofrm-theme28.css}" />
+</head>
+
+<body>
+<div class="form-body">
+    <div class="row">
+        <div class="img-holder">
+            <div class="bg"></div>
+            <div class="info-holder"></div>
+        </div>
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Group 3 Online Courses.</h3>
+                    <p>
+                        Take care of you!
+                    </p>
+                    <h3>Login</h3>
+                    <form th:action="@{/authenticateUser}" method="post">
+                        <input class="form-control" type="text" name="username" id="username" placeholder="Username" required />
+                        <input class="form-control" type="password" name="password" id="password" placeholder="Password" required />
+                        <div th:if="${param.error}">
+                            <p class="text-danger">
+                                Login Error!
+                            </p>
+                        </div>
+
+                        <input type="checkbox" class="form-check-input" id="CheckRemember" name="remember-me">
+                        <label class="form-check-label" for="CheckRemember">Remember Me</label>
+                        <div class="form-button">
+                            <button id="submit" type="submit" class="ibtn">Login</button>
+                            <a class="" th:href="@{/register}">Register</a>
+                        </div>
+                        <div class="form-button">
+                            <a class="" th:href="@{/forgotPassword}">Forgot Password</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script src="/js/jquery.min.js"></script>-->
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script th:if="${message!= null and !message.isEmpty() and statusMessage!=null and !statusMessage.isEmpty()}" th:inline="javascript">
+    Swal.fire({
+        position: "center",
+        icon: /*[[${statusMessage}]]*/ "",
+        title: /*[[${message}]]*/ "",
+        showConfirmButton: false,
+        timer: 1500
+    });
+</script>
+</body>
+
+</html>

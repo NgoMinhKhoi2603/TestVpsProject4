@@ -1,0 +1,76 @@
+<div th:fragment="footer" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    © Group 3.
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end d-none d-sm-block">
+                        Design & Develop by Group 3 - SEM 4 - T2207E
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
+
+    <!--preloader-->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner-border text-primary avatar-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script th:src="@{/assets/libs/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assets/libs/simplebar/simplebar.min.js}"></script>
+<script th:src="@{/assets/libs/node-waves/waves.min.js}"></script>
+<script th:src="@{/assets/libs/feather-icons/feather.min.js}"></script>
+<script th:src="@{/assets/js/pages/plugins/lord-icon-2.1.0.js}"></script>
+<script th:src="@{/assets/js/plugins.js}"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script type="text/javascript" th:src="@{/assets/libs/choices.js/public/assets/scripts/choices.min.js}"></script>
+<script type="text/javascript" th:src="@{/assets/libs/flatpickr/flatpickr.min.js}"></script>
+
+<!-- apexcharts -->
+<script th:src="@{/assets/libs/apexcharts/apexcharts.min.js}"></script>
+
+<!-- Dashboard init -->
+<script th:src="@{/assets/js/pages/dashboard-crm.init.js}"></script>
+
+<!-- App js -->
+<script th:src="@{/assets/js/app.js}"></script>
+<!-- Data Table -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+
+<script>
+    new DataTable('#table1');
+
+    var table = $('#table1').DataTable();
+    var pageInfo = table.page.info();
+    var totalPages = pageInfo.pages;
+
+    if (totalPages <= 1) {
+        $('#table1_paginate').hide();
+    }
+    else {
+        $('#table1_paginate').show();
+    }
+</script>

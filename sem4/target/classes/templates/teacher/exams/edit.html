@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark"
+      data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Teacher - Edit Exam</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="profile-foreground position-relative mx-n4 mt-n4">
+                    <div class="profile-wid-bg">
+                        <!--                        <img src="/assets/images/profile-bg.jpg" alt="" class="profile-wid-img">-->
+                    </div>
+                </div>
+                <div class="pt-4 mb-4 mb-lg-3 pb-lg-4 profile-wrapper">
+                    <div class="row g-4">
+                        <div class="col">
+                            <div class="p-2">
+                                <h3 class="text-white mb-1" th:text="${exam.examName}"></h3>
+                            </div>
+                            <div class="p-2">
+                                <a class="text-white mb-1 btn btn-danger" th:href="'/roleTeacher/course/edit/' + ${exam.course.courseId}">Back to course</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end row-->
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div>
+                            <div class="d-flex profile-wrapper">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab" aria-selected="true">
+                                            <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Overview</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link fs-14" data-bs-toggle="tab" href="#detail" role="tab" aria-selected="false" tabindex="-1">
+                                            <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Detail</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link fs-14" data-bs-toggle="tab" href="#students" role="tab" aria-selected="false" tabindex="-1">
+                                            <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Students</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Tab panes -->
+                            <div class="tab-content pt-4 text-muted">
+                                <div class="tab-pane active show" id="overview-tab" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-xxl-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <form th:action="'/roleTeacher/exam/edit'" method="post" th:object="${exam}">
+                                                            <input type="hidden" th:field="*{examId}">
+                                                            <input type="hidden" th:field="*{status}">
+                                                            <input type="hidden" th:field="*{course}">
+                                                            <input type="hidden" th:field="*{createAt}">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="mb-3">
+                                                                        <label for="examName" class="form-label">Exam Name</label>
+                                                                        <input th:field="*{examName}" type="text" class="form-control" id="examName" name="examName" placeholder="Exam Name">
+                                                                        <div style="color: red" th:if="${#fields.hasErrors('examName')}" th:errors="*{examName}" class="error"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="mb-3">
+                                                                        <label for="time" class="form-label">Time</label>
+                                                                        <input th:field="*{time}" type="number" class="form-control" id="time" name="time" placeholder="Time">
+                                                                        <div style="color: red" th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="error"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="description" class="form-label">Description</label>
+                                                                <textarea th:field="*{description}" class="form-control" id="description" name="description" placeholder="Description"></textarea>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-danger" style="margin-bottom: 30px">Edit Exam</button>
+                                                        </form>
+                                                    </div>
+                                                    <!--end row-->
+                                                </div>
+                                                <!--end card-body-->
+                                            </div><!-- end card -->
+
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </div>
+                                <!--end tab-pane-->
+                                <div class="tab-pane fade" id="detail" role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalAddQuestion">Add Question</button>
+                                            </div>
+                                            <div class="row" id="questionResult">
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                        <!--end card-body-->
+                                    </div>
+                                    <!--end card-->
+                                </div>
+                                <!--end tab-pane-->
+                                <div class="tab-pane fade" id="students" role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-xxl-12">
+                                                    <table id="table1" class="table table-striped" style="width:100%">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>FULL NAME</th>
+                                                            <th>TRUE/TOTAL</th>
+                                                            <th>EMAIL</th>
+                                                            <th>PHONE</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr th:each="userDoExamDTO: ${userDoExamDTOs}">
+                                                                <td class="align-middle" th:text="${userDoExamDTO.fullName}"></td>
+                                                                <td class="align-middle">
+                                                                    <span th:text="${userDoExamDTO.trueNumber}"></span>
+                                                                    /
+                                                                    <span th:text="${userDoExamDTO.totalNumber}"></span>
+                                                                </td>
+                                                                <td class="align-middle" th:text="${userDoExamDTO.email}"></td>
+                                                                <td class="align-middle" th:text="${userDoExamDTO.phoneNumber}"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot th:if="${userDoExamDTOs.size()>5}">
+                                                        <tr>
+                                                            <th>FULL NAME</th>
+                                                            <th>TRUE/TOTAL</th>
+                                                            <th>EMAIL</th>
+                                                            <th>PHONE</th>
+                                                        </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!-- end row -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end tab-pane-->
+                            </div>
+                            <!--end tab-content-->
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+
+            </div><!-- container-fluid -->
+        </div><!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>document.write(new Date().getFullYear())</script>2024 © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design &amp; Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<div class="modal fade" id="ModalAddQuestion" tabindex="-1" aria-labelledby="ModalAddQuestionLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalAddQuestionLabel">Add Question</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addQuestionForm" th:action="'/roleTeacher/api/question/add/'+${exam.examId}" method="post">
+                    <input id="examIdHidden" type="hidden" th:value="${exam.examId}">
+                    <div class="text-danger" id="validatedQuestion"></div>
+                    <div class="row mb-3">
+                        <label for="question" class="form-label">Question</label>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="question" name="question" placeholder="Question">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="answer1" class="form-label col-12">Answer 1</label>
+                        <input class="col-1" type="radio" name="trueAnswer" id="trueAnswer1" value="1">
+                        <div class="col-11">
+                            <input type="text" class="form-control" id="answer1" name="answer" placeholder="Answer 1">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="answer2" class="form-label col-12">Answer 2</label>
+                        <input class="col-1" type="radio" name="trueAnswer" id="trueAnswer2" value="2">
+                        <div class="col-11">
+                            <input type="text" class="form-control" id="answer2" name="answer" placeholder="Answer 2">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="answer3" class="form-label col-12">Answer 3</label>
+                        <input class="col-1" type="radio" name="trueAnswer" id="trueAnswer3" value="3">
+                        <div class="col-11">
+                            <input type="text" class="form-control" id="answer3" name="answer" placeholder="Answer 3">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="answer4" class="form-label col-12">Answer 4</label>
+                        <input class="col-1" type="radio" name="trueAnswer" id="trueAnswer4" value="4">
+                        <div class="col-11">
+                            <input type="text" class="form-control" id="answer4" name="answer" placeholder="Answer 4">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-danger mb-3 mt-4">Add Question</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+<script>
+    $(document).ready(function(){
+        $('#addQuestionForm').on('submit', function(event){
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'POST',
+                data: formData,
+                success: function(response){
+                    if(response!=="Success"){
+                        let validateElement = document.getElementById("validatedQuestion");
+                        validateElement.innerHTML = response;
+                    }
+
+                    if(response==="Success"){
+                        let validateElement = document.getElementById("validatedQuestion");
+                        validateElement.innerHTML = "";
+
+                        $('#ModalAddQuestion').modal('hide');
+
+                        let examId = document.getElementById("examIdHidden");
+                        getQuestion(examId.value);
+
+                        document.getElementById("addQuestionForm").reset();
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    let validateElement = document.getElementById("validatedQuestion");
+                    validateElement.innerHTML = "The answer fail";
+
+                }
+            });
+        });
+    });
+
+
+    function getQuestion(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/roleTeacher/exam/listQuestion/' + id,
+            success: function (result) {
+                displayQuestionResults(result);
+            },
+            error: function (error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    function displayQuestionResults(results) {
+        var Results = document.getElementById('questionResult');
+        if(results === ""){
+            Results.innerHTML="<div class=\"cart-2-li\"> Exam don't have question! </div>";
+        }
+        else{
+            Results.innerHTML = "";
+
+            var parsedResults = $.parseHTML(results);
+
+            $(Results).append(parsedResults);
+        }
+    }
+
+    function hiddenQuestion(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/roleTeacher/api/question/hidden/' + id,
+            success: function (result) {
+                let examId = document.getElementById("examIdHidden");
+                getQuestion(examId.value);
+            },
+            error: function (error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    let examId = document.getElementById("examIdHidden");
+    getQuestion(examId.value);
+</script>
+
+</body>
+
+</html>

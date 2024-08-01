@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<!-- Mirrored from codebasket.xyz/template/talim/light/staff.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 07:56:55 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Courses - Teacher List</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
+</head>
+
+<body class="tl-inner-courses-body">
+
+<!--HEADER HOME-->
+<div th:insert="~{home/fragments/header}"></div>
+
+
+<!-- BREADCRUMB STARTS HERE -->
+<div class="tl-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-md-6">
+                <div class="banner-txt">
+                    <h1 class="tl-breadcrumb-title">Teacher</h1>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <ul class="tl-breadcrumb-nav d-flex">
+                    <li><a href="/">Home</a></li>
+                    <li class="current-page">
+                        <span class="dvdr"><i class="icofont-simple-right"></i></span>
+                        <span>Teacher</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMB ENDS HERE -->
+
+
+<!-- TEACHERS START ↓ -->
+<section class="tl-1-teachers pt-60 pb-60">
+    <div class="container">
+        <div class="row g-3 g-lg-4">
+            <div class="col-lg-4 col-6" th:each="teacher: ${ur}">
+                <div class="tl-1-teacher">
+                    <img th:src="${teacher.user.image}" alt="Teacher Image" class="tl-1-teacher-img" style="width: 400px; height: 400px">
+                    <ul class="tl-1-teacher-socials">
+                        <li><a th:href="${teacher.git}"><i class="fa-brands fa-github"></i></a></li>
+                        <li><a th:href="${teacher.website}"><i class="fa-solid fa-globe"></i></a></li>
+                    </ul>
+                    <div class="tl-1-teacher-info">
+                        <h5 class="tl-1-teacher-title"><a th:href="'/teacher/detail/' + ${teacher.id}" th:text="${teacher.user.getFullname()}"></a></h5>
+                        <h6 class="tl-1-teacher-sub-title"><a th:href="'tel:' + ${teacher.user.phoneNumber}" th:text="${teacher.user.getPhoneNumber()}"></a></h6>
+                        <h6 class="tl-1-teacher-sub-title"><a th:href="'mailto:' + ${teacher.user.email}" th:text="${teacher.user.getEmail()}"></a></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- TEACHERS END ↑ -->
+
+<!--FOOTER HOME-->
+<div th:insert="~{/home/fragments/footer}"></div>
+</body>
+
+
+<!-- Mirrored from codebasket.xyz/template/talim/light/staff.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 07:56:55 GMT -->
+</html>

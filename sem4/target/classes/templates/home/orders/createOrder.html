@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Courses - Create Order</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+    <link rel="stylesheet" th:href="@{/home/cart/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/venobox.min.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/aos.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/slick.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/responsive.css}" />
+</head>
+<body>
+<!--HEADER HOME-->
+<div th:insert="~{home/fragments/header}"></div>
+
+<div class="tl-13-about tl-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-md-6">
+                <div class="banner-txt">
+                    <h1 class="tl-breadcrumb-title">Payment</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 style="color: red; text-align: center; margin-top: 40px" th:if="${error != null and !error.isEmpty()}" th:text="${error}" class="error"></h2>
+
+<form th:action="@{/submitOrder}" method="post" th:object="${order}">
+    <div class="row g-0 tl-event-details-row">
+        <section class="shopping-cart-two shopping-cart-new-address">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="shopping-cart-new-address-top-item">
+                                    <div class="shopping-cart-new-address-taitel">
+                                        <h4>Order's Information</h4>
+                                    </div>
+
+                                    <div class="shopping-cart-new-address-top-btn">
+                                        <a th:href="@{cart/list}">
+                          <span>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M5 8H15C17.2091 8 19 9.79086 19 12V12C19 14.2091 17.2091 16 15 16H5M5 8L9 5M5 8L9 11"
+                                    stroke="#394150" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </span>
+                                            Back
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="shopping-cart-new-address-from">
+                                    <div class="shopping-cart-new-address-from-item">
+                                        <div class="shopping-cart-new-address-from-inner">
+                                            <label for="exampleFormControlInput14" class="form-label">Description</label>
+                                            <textarea name="description" class="form-control" id="exampleFormControlInput14" style="height: 300px"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!--                                <div class="shopping-cart-new-address-from-btn">-->
+                                    <!--                                    <div class="check-btn-two">-->
+                                    <!--                                        <a href="#" class="main-btn-four">Save</a>-->
+                                    <!--                                    </div>-->
+                                    <!--                                </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="cart-summary-box">
+                            <div class="cart-summary-box-text">
+                                <h3>Cart Summary</h3>
+                            </div>
+                            <div class="cart-summary-box-item-top">
+                                <div class="cart-summary-box-item" th:each="cartCourse: ${cartCourses}">
+                                    <a href="#">
+                                        <div class="cart-summary-box-inner">
+                                            <div class="cart-summary-box-img mr-3">
+                                                <img th:src="${cartCourse.course.image}" alt="img" width="150px"/>
+                                            </div>
+                                            <div class="cart-summary-box-text-two">
+                                                <h3 th:text="${cartCourse.course.courseName}"></h3>
+                                                <h6><span>Teacher :</span> <span th:text="${cartCourse.course.user.fullname}"></span></h6>
+                                                <h5><span>Course's Type :</span> <span th:text="${cartCourse.course.courseType.typeName}"></span></h5>
+                                                <p th:if="${cartCourse.course.salePrice==0}">Price: $<span th:text="${cartCourse.course.price}"></span></p>
+                                                <p th:unless="${cartCourse.course.salePrice==0}">Price: <del th:text="${cartCourse.course.price}"></del> $<span th:text="${cartCourse.course.salePrice}"></span></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="apply-coupon">
+                                <div class="apply-coupon-taitel">
+                                    <h4>Apply Coupon</h4>
+                                </div>
+
+                                <div class="apply-coupon-btn">
+                                    <div class="apply-coupon-form">
+                                        <div style="color: red" th:if="${validateCoupon != null and !validateCoupon.isEmpty()}" th:text="${validateCoupon}" class="error"></div>
+                                        <input type="text" name="coupon" class="form-control" id="coupon" placeholder="Enter your coupon" list="couponList"/>
+                                        <datalist id="couponList">
+                                            <option th:each="coupon: ${events}" th:value="${coupon.code}">
+                                        </datalist>
+                                    </div>
+                                </div>
+
+                                <div class="apply-coupon-box">
+                                    <!--                                <div class="shopping-cart-list">-->
+                                    <!--                                    <div class="shopping-cart-list-text">-->
+                                    <!--                                        <h4>Subtotal</h4>-->
+                                    <!--                                        <h5 href="#">$120.0</h5>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="shopping-cart-list-text">-->
+                                    <!--                                        <h4>Discount</h4>-->
+                                    <!--                                        <h5 href="#">-$0</h5>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="shopping-cart-list-text">-->
+                                    <!--                                        <h4>Delivery Charges</h4>-->
+                                    <!--                                        <h5 href="#">+$0</h5>-->
+                                    <!--                                    </div>-->
+                                    <!--                                </div>-->
+                                    <div class="shopping-cart-list shopping-cart-list-btm">
+                                        <div class="shopping-cart-list-text">
+                                            <h4>Subtotal</h4>
+                                            <h5>$<span th:text="${total}"></span></h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="shopping-cart-list-btn">
+                                        <input type="hidden" name="amount" th:value="${total}">
+                                        <input type="hidden" name="orderInfo" th:value="${order.orderId}">
+                                        <input type="hidden" th:field="*{paymentMethod}">
+                                        <input type="hidden" th:field="*{status}">
+                                        <input type="hidden" th:field="*{user}">
+
+                                        <button type="submit" class="main-btn-six">
+                                            Checkout
+
+                                            <span>
+                            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M9 9L13 5M13 5L9 1M13 5L1 5" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                          </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>
+
+<!--FOOTER HOME-->
+<div th:insert="~{/home/fragments/footer}"></div>
+
+</body>
+</html>

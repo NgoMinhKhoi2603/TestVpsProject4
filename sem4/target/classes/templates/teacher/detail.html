@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark"
+      data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Teacher - Detail</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <form th:action="@{/roleTeacher/edit}" th:object="${teacher}" method="post">
+        <div class="page-content" style="padding-top: 70px">
+            <div class="container-fluid" style="padding-top: 70px">
+                <div class="row">
+                    <div class="col-xxl-3">
+                        <div class="card mt-n5">
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
+                                        <img src="/home/images/NoImage.png" class="rounded-circle avatar-xl img-thumbnail user-profile-image material-shadow" alt="user-profile-image">
+                                    </div>
+                                    <h5 class="fs-16 mb-1" th:text="${teacher.user.fullname}"></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end card-->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="flex-grow-1">
+                                        <h5 class="card-title mb-0">Your Website</h5>
+                                    </div>
+                                </div>
+                                <div class="mb-3 d-flex">
+                                    <div class="avatar-xs d-block flex-shrink-0 me-3">
+                                        <span class="avatar-title rounded-circle fs-16 bg-body text-body material-shadow">
+                                            <i class="ri-github-fill"></i>
+                                        </span>
+                                    </div>
+                                    <label for="git"></label>
+                                    <input type="text" class="form-control" id="git" name="git" placeholder="github.com/example" th:field="*{git}">
+                                    <li style="color: red" th:if="${#fields.hasErrors('git')}" th:errors="*{git}" class="error"></li>
+                                </div>
+                                <div class="mb-3 d-flex">
+                                    <div class="avatar-xs d-block flex-shrink-0 me-3">
+                                            <span class="avatar-title rounded-circle fs-16 bg-primary material-shadow">
+                                                <i class="ri-global-fill"></i>
+                                            </span>
+                                    </div>
+                                    <label for="website"></label>
+                                    <input type="text" class="form-control" id="website" name="website" placeholder="www.example.com" th:field="*{website}">
+                                    <li style="color: red" th:if="${#fields.hasErrors('website')}" th:errors="*{website}" class="error"></li>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end col-->
+                    <div class="col-xxl-9">
+                        <div class="card mt-xxl-n5">
+                            <div class="card-header">
+                                <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#personalDetails" role="tab" aria-selected="true">
+                                            <i class="fas fa-home"></i> Personal Details
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#orders" role="tab" aria-selected="false" tabindex="-1">
+                                            <i class="far fa-user"></i> Orders
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" data-bs-toggle="tab" href="#revenue" role="tab" aria-selected="false" tabindex="-1">
+                                            <i class="far fa-envelope"></i> Revenue Chart
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body p-4">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="personalDetails" role="tabpanel">
+                                            <input type="hidden" th:field="*{id}">
+                                            <input type="hidden" th:field="*{createAt}">
+                                            <input type="hidden" th:field="*{updateAt}">
+                                            <input type="hidden" th:field="*{status}">
+                                            <input type="hidden" th:field="*{user}">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="phonenumberInput" class="form-label">Phone Number</label>
+                                                        <div style="background: #c7c1c1" class="form-control" id="phonenumberInput" th:text="${teacher.user.phoneNumber}"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="emailInput" class="form-label">Email Address</label>
+                                                        <div style="background: #c7c1c1" class="form-control" id="emailInput" th:text="${teacher.user.email}"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="bankName" class="form-label">Bank Name</label>
+                                                        <li style="color: red" th:if="${#fields.hasErrors('bankName')}" th:errors="*{bankName}" class="error"></li>
+                                                        <input type="text" class="form-control" id="bankName" name="bankName" placeholder="Bank Name" th:field="*{bankName}">
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="bankNumber" class="form-label">Bank Number</label>
+                                                        <li style="color: red" th:if="${#fields.hasErrors('bankNumber')}" th:errors="*{bankNumber}" class="error"></li>
+                                                        <input type="text" class="form-control" id="bankNumber" name="bankNumber" placeholder="***@***.***" th:field="*{bankNumber}">
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3 pb-2">
+                                                        <label for="description" class="form-label">Description</label>
+                                                        <textarea class="form-control" id="description" name="description" placeholder="Enter your description" rows="3" th:field="*{description}"></textarea>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-12">
+                                                    <div class="hstack gap-2 justify-content-end">
+                                                        <button type="submit" class="btn btn-primary">Updates</button>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+
+                                    </div>
+                                    <!--end tab-pane-->
+                                    <div class="tab-pane" id="orders" role="tabpanel">
+                                        <h3 class="total-price text-center fw-semibold mb-5">
+                                            Total Price: <span id="total-price-value"></span> $
+                                        </h3>
+
+                                        <table id="table1" class="table table-striped" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th>COURSE NAME</th>
+                                                <th>PRICE ($)</th>
+                                                <th>USER</th>
+                                                <th>BUY AT</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="orderDetail: ${orderDetails}">
+                                                <td class="align-middle" th:text="${orderDetail.course.courseName}"></td>
+                                                <td class="align-middle" th:text="${orderDetail.price}"></td>
+                                                <td class="align-middle" th:text="${orderDetail.order.user.fullname}"></td>
+                                                <td class="align-middle" th:text="${orderDetail.order.updateAt}"></td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot th:if="${orderDetails.size()>5}">
+                                            <tr>
+                                                <th>COURSE NAME</th>
+                                                <th>PRICE</th>
+                                                <th>USER</th>
+                                                <th>CREATE AT</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <!--end tab-pane-->
+                                    <div class="tab-pane" id="revenue" role="tabpanel">
+                                        <div class="card card-height-100">
+                                            <div class="card-header align-items-center d-flex">
+                                                <h4 class="card-title mb-0 flex-grow-1">Balance Overview</h4>
+                                                <div class="flex-shrink-0">
+                                                    <div class="dropdown card-header-dropdown">
+                                                        <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <span class="fw-semibold text-uppercase fs-12">Sort by: </span><span class="text-muted" id="current-period">Current Year<i class="mdi mdi-chevron-down ms-1"></i></span>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item" href="#" onclick="updateChart('day', 'Today')">Today</a>
+                                                            <a class="dropdown-item" href="#" onclick="updateChart('week', 'Last Week')">Last Week</a>
+                                                            <a class="dropdown-item" href="#" onclick="updateChart('month', 'Last Month')">Last Month</a>
+                                                            <a class="dropdown-item" href="#" onclick="updateChart('year', 'Current Year')">Current Year</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end card header -->
+                                            <div class="card-body px-0">
+                                                <ul class="list-inline main-chart text-center mb-0">
+                                                    <li class="list-inline-item chart-border-left me-0 border-0">
+                                                        <h4>
+                                                            <span id="revenueNumber" th:text="${totalYear}"></span>$
+                                                            <span class="text-muted d-inline-block fs-13 align-middle ms-2">Revenue</span>
+                                                        </h4>
+                                                    </li>
+                                                    <li class="list-inline-item chart-border-left me-0">
+                                                        <h4>
+                                                            <span data-plugin="counterup" id="profit-ratio" th:text="${profit}"></span>%<span class="text-muted d-inline-block fs-13 align-middle ms-2">Profit Ratio</span>
+                                                        </h4>
+                                                    </li>
+                                                    <li class="list-inline-item chart-border-left me-0">
+                                                        <h4 class="text-primary">
+                                                            <span id="profitNumber" th:text="${totalYear*profit/100}"></span>$
+                                                            <span class="text-muted d-inline-block fs-13 align-middle ms-2">Your Profits</span>
+                                                        </h4>
+                                                    </li>
+                                                </ul>
+                                                <div id="revenue-expenses-charts" class="apex-charts" dir="ltr"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end tab-pane-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+
+            </div>
+            <!-- container-fluid -->
+        </div><!-- End Page-content -->
+        </form>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>document.write(new Date().getFullYear())</script>2024 © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design &amp; Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</div>
+<!-- END layout-wrapper -->
+<!-- Add ApexCharts script -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script th:inline="javascript">
+    // Lấy dữ liệu từ Thymeleaf
+    let profit = /*[[${profit}]]*/ 0;
+    let revenueDays = /*[[${revenueDays}]]*/ '[]';
+    let revenueWeeks = /*[[${revenueWeeks}]]*/ '[]';
+    let revenueMonths = /*[[${revenueMonths}]]*/ '[]';
+    let revenueYears = /*[[${revenueYears}]]*/ '[]';
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const nextMonth = new Date(year, month + 1, 1);
+    const lastDayOfCurrentMonth = new Date(nextMonth - 1);
+    const daysInCurrentMonth = lastDayOfCurrentMonth.getDate();
+    console.log(daysInCurrentMonth);
+
+    let totalDay = /*[[${totalDay}]]*/ 0;
+    let totalWeek = /*[[${totalWeek}]]*/ 0;
+    let totalMonth = /*[[${totalMonth}]]*/ 0;
+    let totalYear = /*[[${totalYear}]]*/ 0;
+
+    var data = {
+        day: {
+            revenue: new Array(24).fill(0),
+            categories: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+        },
+        week: {
+            revenue: new Array(7).fill(0),
+            categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        month: {
+            revenue: new Array(daysInCurrentMonth).fill(0),
+            categories: Array.from({length: daysInCurrentMonth}, (_, i) => i + 1),
+        },
+        year: {
+            revenue: new Array(12).fill(0),
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        }
+    };
+
+    revenueDays.forEach(item => {
+        data.day.revenue[item.count] = item.price;
+    });
+
+    revenueWeeks.forEach(item => {
+        data.week.revenue[item.count-2] = item.price;
+    });
+
+
+    revenueMonths.forEach(item => {
+        data.month.revenue[item.count-1] = item.price;
+    });
+
+    revenueYears.forEach(item => {
+        data.year.revenue[item.count-1] = item.price;
+    });
+
+    let options = {
+        series: [{
+            name: 'Revenue',
+            data: data.year.revenue
+        }],
+        chart: {
+            height: 350,
+            type: 'line',
+            toolbar: {
+                show: false
+            }
+        },
+        stroke: {
+            width: [3, 3],
+            curve: 'smooth'
+        },
+        xaxis: {
+            categories: data.year.categories
+        },
+        colors: ['#34c38f'],
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            position: 'top'
+        }
+    };
+
+    let chart = new ApexCharts(document.querySelector("#revenue-expenses-charts"), options);
+    chart.render();
+
+    function updateChart(timeframe, period) {
+        document.getElementById('current-period').innerHTML = `${period} <i class="mdi mdi-chevron-down ms-1"></i>`;
+        let revenue = 0.0;
+        if(timeframe==="day"){
+            revenue = totalDay;
+        } else if(timeframe === "week"){
+            revenue = totalWeek;
+        } else if(timeframe === "month"){
+            revenue = totalMonth;
+        } else if(timeframe === "year"){
+            revenue = totalYear;
+        }
+
+        document.getElementById("revenueNumber").innerHTML = revenue.toString();
+        document.getElementById("profit-ratio").innerHTML = profit.toString();
+        document.getElementById("profitNumber").innerHTML = (revenue*profit/100).toString();
+        chart.updateOptions({
+            xaxis: {
+                categories: data[timeframe].categories
+            },
+            series: [{
+                name: 'Revenue',
+                data: data[timeframe].revenue
+            }]
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('#table1_filter input').addEventListener('keyup', function() {
+            updateTotalPrice();
+        });
+
+        function updateTotalPrice() {
+            let totalPrice = 0;
+
+            let rows = table.rows({ search: 'applied' }).data();
+            console.log(rows);
+            rows.each(function (value, index) {
+                let price = parseFloat(value[1]);
+                console.log("Price: "+price);
+                if (!isNaN(price)) {
+                    totalPrice += price;
+                }
+
+            });
+
+            let wrapperDiv = document.getElementById('total-price-value');
+            wrapperDiv.innerHTML = totalPrice;
+        }
+
+        updateTotalPrice();
+    });
+</script>
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+
+</body>
+
+</html>
